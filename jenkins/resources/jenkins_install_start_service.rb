@@ -30,8 +30,6 @@ action :create do
         yes y Y | apt-get install jenkins
         echo "start Jenkins !!"
         service jenkins status && service jenkins start
-        echo "check UI!!"
-        curl -I http://localhost:8080
       EOH
     end
 end
