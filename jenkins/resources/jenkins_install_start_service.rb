@@ -8,7 +8,6 @@ action :create do
         sudo su
         echo "start process!!"
         yes Y y | sudo apt-get -f install
-        echo "curl install!!"
         yes Y y | sudo apt-get install curl
         echo "start java install!!"
         yes Y y | sudo apt-get install python-software-properties
@@ -20,15 +19,15 @@ action :create do
         sudo echo "JAVA_HOME="/usr/lib/jvm/java-8-oracle"" >> /etc/environment
         source /etc/environment
         echo $JAVA_HOME
-        echo "check java !"
+        echo "\n \n \n check java !"
         java -version
-        echo "download jenkins !!" | sleep 20
-        yes y | wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add –
+        echo "download jenkins !! \n \n" | sleep 20
+        yes y | wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
         echo "add in source list!!"
-        sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+        echo "deb https://pkg.jenkins.io/debian binary/" >> /etc/apt/sources.list
         echo "update again !!"
         yes y Y | apt-get update | echo "apt install !!"
-        yes y Y | apt-get install Jenkins
+        yes y Y | apt-get install jenkins
         echo "start Jenkins !!"
         service jenkins status && service jenkins start
         echo "check UI!!"
