@@ -38,7 +38,6 @@ action :start do
       code <<-EOH
         service jenkins status 
         service jenkins start
-        curl -I http://localhost:8080
       EOH
     end
     #notifies :start, "jenkins_server[jenkins]", :immediately
@@ -48,7 +47,6 @@ action :stop do
       code <<-EOH
         service jenkins status 
         service jenkins stop && service jenkins status
-        curl -I http://localhost:4440
       EOH
     end
     notifies :stop, "jenkins_server[jenkins]", :immediately
@@ -58,7 +56,6 @@ action :restart do
       code <<-EOH
         service jenkins status 
         service jenkins restart && service jenkins status
-        sleep 120 && curl -I http://localhost:4440
       EOH
     end
     notifies :restart, "jenkins_server[jenkins]", :immediately
